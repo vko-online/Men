@@ -104,7 +104,8 @@ request: function(config){
         config.headers.Authentication = auth;
     }
     return config;
-}```
+}
+```
 
 
 ## Credits
