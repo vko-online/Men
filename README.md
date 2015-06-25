@@ -222,6 +222,17 @@ socketio.sockets.in(utils.get_id(req.user)).emit('notification', 'Hello');
 ```
 * VK-passport
 
+
+8 Angular side token consumption
+```javascript
+request: function(config){
+    var auth = localStorage.getItem('a');
+    if(auth){
+        config.headers.Authentication = auth;
+    }
+    return config;
+}```
+
 ## Credits
 Inspired by and built upon the great work of [MEANjs.org](http://meanjs.org/)
 The MEAN name was coined by [Valeri Karpov](http://blog.mongodb.org/post/49262866911/the-mean-stack-mongodb-expressjs-angularjs-and)

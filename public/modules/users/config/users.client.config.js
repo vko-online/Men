@@ -16,7 +16,7 @@ angular.module('users').config(['$httpProvider',
                     request: function(config){
                         var auth = localStorage.getItem('a');
                         if(auth){
-                            config.headers.Authentication = localStorage.getItem('a');
+                            config.headers.Authentication = auth;
                         }
                         return config;
                     },
