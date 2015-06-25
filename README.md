@@ -91,10 +91,12 @@ Users.sign_out(function(successResponse){
 var socketio = req.app.get('socketio');
 socketio.sockets.in(utils.get_id(req.user)).emit('notification', 'Hello');
 ```
+
+
 * VK-passport
 
 
-8 Angular side token consumption
+* Angular side token consumption
 ```javascript
 request: function(config){
     var auth = localStorage.getItem('a');
@@ -103,6 +105,7 @@ request: function(config){
     }
     return config;
 }```
+
 
 ## Credits
 Inspired by and built upon the great work of [MEANjs.org](http://meanjs.org/)
