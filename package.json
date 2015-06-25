@@ -1,6 +1,6 @@
 {
-  "name": "insport",
-  "description": "Insport mobile app server",
+  "name": "starter",
+  "description": "Starter mobile app server",
   "version": "0.0.1",
   "author": "Bwin",
   "engines": {

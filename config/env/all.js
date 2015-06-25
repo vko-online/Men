@@ -1,9 +1,9 @@
 'use strict';
 module.exports = {
     app: {
-        title: 'insport',
-        description: 'Insport web server',
-        keywords: 'Insport, tennis, p2p, peer2peer, match, matchmaking'
+        title: 'starter',
+        description: 'Starter web server',
+        keywords: 'Starter, tennis, p2p, peer2peer, match, matchmaking'
     },
     port: process.env.PORT || 3000,
     templateEngine: 'swig',

@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/insport-dev',
+	db: 'mongodb://localhost/starter-dev',
 	app: {
-		title: 'insport - Development Environment'
+		title: 'starter - Development Environment'
 	},
 	vk: {
 		clientID: process.env.VK_ID || 'APP_ID',
