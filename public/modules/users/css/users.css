@@ -1,0 +1,101 @@
+@media (min-width: 992px) {
+    .nav-users {
+        position: fixed;
+    }
+}
+
+.remove-account-container {
+    display: inline-block;
+    position: relative;
+}
+
+.btn-remove-account {
+    top: 10px;
+    right: 10px;
+    position: absolute;
+}
+
+.login {
+    position: absolute;
+    display: flex;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1031;
+}
+
+.login-wallpaper {
+    position: relative;
+    flex: .75;
+    background: url('../../../modules/users/img/wallpapers/1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-box-shadow: -10px 0 30px #4c4c4c inset;
+    -moz-box-shadow: -10px 0 30px #4c4c4c inset;
+    box-shadow: -10px 0 30px #4c4c4c inset;
+}
+
+.login-wallpaper img {
+    width: 100%;
+}
+
+.login-sidebar {
+    flex: .25;
+    min-width: 320px;
+    background: #FFFFFF;
+    position: relative;
+}
+.login-sidebar #copy-right{
+    position: absolute;
+    bottom:10px;
+}
+#copy-right{
+    color:#464646;
+}
+.cyclone{
+    font-size: 4em;
+    margin: -40px -250px;
+    width: 500px;
+    height: 80px;
+    text-align: center;
+    color: #eee;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+}
+.cyclone-title{
+    vertical-align: top;
+}
+.cyclone-list{
+    display:inline-block;
+    text-align: left;
+    animation: simple;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+}
+@media (max-width: 700px) {
+    .login-wallpaper{
+        flex: 0;
+    }
+    .login-sidebar {
+        flex: 1;
+    }
+    #basic-info{
+        display:none;
+    }
+}
+@keyframes simple {
+    0%{
+        margin-top: 0;
+    }
+    50%{
+        margin-top: -320px;
+    }
+    100%{
+        margin-top: 0;
+    }
+}
