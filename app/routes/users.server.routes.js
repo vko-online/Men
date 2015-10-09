@@ -7,15 +7,12 @@ module.exports = function(app){
     // User Routes
     var users = require('../../app/controllers/users.server.controller');
     // Setting up the users profile api
-    app.route('/users/me').get(users.requiresLogin, users.me);
-    app.route('/users').get(users.requiresLogin, users.list);
-    app.route('/users/friends').get(users.user_friends);
-    app.route('/users/mmr').get(users.requiresLogin, users.by_mmr);
-    app.route('/users/accounts').delete(users.requiresLogin, users.removeOAuthProvider);
+    app.route('/users/me').get(users.requiresLoginToken, users.me);
+    app.route('/users').get(users.list); //users.requiresLoginToken,
+    app.route('/users/accounts').delete(users.requiresLoginToken, users.removeOAuthProvider);
 
-    app.route('/users/:userId').put(users.requiresLogin, users.update);
-    app.route('/users/:userId').get(users.requiresLogin, users.read);
-    app.route('/users/:userId/follow_unfollow').post(users.requiresLogin, users.follow_unfollow);
+    app.route('/users/:userId').put(users.requiresLoginToken, users.update);
+    app.route('/users/:userId').get(users.requiresLoginToken, users.read);
     app.route('/users/accounts').delete(users.removeOAuthProvider);
     // Setting up the users password api
     app.route('/users/password').post(users.changePassword);

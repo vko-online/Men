@@ -23,8 +23,6 @@ exports.list = function(req, res){
     var skip = req.query.skip;
     var limit = req.query.limit;
     var query = req.query.q;
-    //TODO: shall we filter by user sport_type?
-    //var sport_type = utils.get_id(req.user.sport_type);
     var filter = {};
     if(query){
         //TODO: we should also filter by firstName and lastName, and maybe by email
@@ -34,8 +32,7 @@ exports.list = function(req, res){
     //if(sport_type){
     //    filter.sport_type = sport_type;
     //}
-    User.find(filter, {coach_id: 0, email: 0, firstName: 0, lastName: 0, notifications: 0, roles: 0, password: 0, provider: 0, __v: 0, salt: 0, created: 0, loginToken: 0, loginExpires: 0, friends: 0})
-        .sort('-mmr')
+    User.find(filter, {loginToken: 0, loginExpires: 0})
         .skip((skip || 0))
         .limit((limit || 10))
         .exec(function(err, users){

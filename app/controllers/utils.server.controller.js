@@ -11,5 +11,6 @@ var _ = require('lodash');
  * Extend game's controller
  */
 module.exports = _.extend(
-    require('./utils/id_getter.server.controller')
+    require('./utils/common.server.controller'),
+    require('./utils/socket.server.controller')
 );

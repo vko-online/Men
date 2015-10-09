@@ -3,10 +3,7 @@ module.exports = function(grunt){
     // Unified Watch Object
     var watchFiles = {
         serverViews: ['app/views/**/*.*'],
-        serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js'],
-        clientViews: ['public/modules/**/views/**/*.html'],
-        clientJS: ['public/js/*.js', 'public/modules/**/*.js'],
-        clientCSS: ['public/modules/**/*.css'],
+        serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js', '!app/tests/**/*.js'],
         mochaTests: ['app/tests/**/*.js']
     };
     // Project Configuration
@@ -25,58 +22,13 @@ module.exports = function(grunt){
                 options: {
                     livereload: true
                 }
-            },
-            clientViews: {
-                files: watchFiles.clientViews,
-                options: {
-                    livereload: true,
-                }
-            },
-            clientJS: {
-                files: watchFiles.clientJS,
-                tasks: ['jshint'],
-                options: {
-                    livereload: true
-                }
-            },
-            clientCSS: {
-                files: watchFiles.clientCSS,
-                tasks: ['csslint'],
-                options: {
-                    livereload: true
-                }
             }
         },
         jshint: {
             all: {
-                src: watchFiles.clientJS.concat(watchFiles.serverJS),
+                src: watchFiles.serverJS,
                 options: {
                     jshintrc: true
-                }
-            }
-        },
-        csslint: {
-            options: {
-                csslintrc: '.csslintrc',
-            },
-            all: {
-                src: watchFiles.clientCSS
-            }
-        },
-        uglify: {
-            production: {
-                options: {
-                    mangle: false
-                },
-                files: {
-                    'public/dist/application.min.js': 'public/dist/application.js'
-                }
-            }
-        },
-        cssmin: {
-            combine: {
-                files: {
-                    'public/dist/application.min.css': '<%= applicationCSSFiles %>'
                 }
             }
         },
@@ -100,13 +52,6 @@ module.exports = function(grunt){
                     'no-preload': true,
                     'stack-trace-limit': 50,
                     'hidden': []
-                }
-            }
-        },
-        ngAnnotate: {
-            production: {
-                files: {
-                    'public/dist/application.js': '<%= applicationJavaScriptFiles %>'
                 }
             }
         },
@@ -143,13 +88,6 @@ module.exports = function(grunt){
     require('load-grunt-tasks')(grunt);
     // Making grunt default to force in order not to break the project.
     grunt.option('force', true);
-    // A Task for loading the configuration object
-    grunt.task.registerTask('loadConfig', 'Task that loads the config into a grunt option.', function(){
-        var init = require('./config/init')();
-        var config = require('./config/config');
-        grunt.config.set('applicationJavaScriptFiles', config.assets.js);
-        grunt.config.set('applicationCSSFiles', config.assets.css);
-    });
     // Default task(s).
     grunt.registerTask('default', ['lint', 'concurrent:default']);
     // Debug task.
@@ -157,9 +95,9 @@ module.exports = function(grunt){
     // Secure task(s).
     grunt.registerTask('secure', ['env:secure', 'lint', 'concurrent:default']);
     // Lint task(s).
-    grunt.registerTask('lint', ['jshint', 'csslint']);
+    grunt.registerTask('lint', ['jshint']);
     // Build task(s).
-    grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
+    grunt.registerTask('build', ['lint']);
     // Test task.
     grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
 };

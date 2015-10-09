@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/starter-dev',
+	db: 'mongodb://localhost/branded_lifestyle-dev',
 	app: {
-		title: 'starter - Development Environment'
+		title: 'branded_lifestyle - Development Environment'
 	},
 	vk: {
 		clientID: process.env.VK_ID || 'APP_ID',
