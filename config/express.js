@@ -10,15 +10,10 @@ var fs = require('fs'),
     express = require('express'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    session = require('express-session'),
     compress = require('compression'),
     methodOverride = require('method-override'),
-    cookieParser = require('cookie-parser'),
     helmet = require('helmet'),
     passport = require('passport'),
-    mongoStore = require('connect-mongo')({
-        session: session
-    }),
     flash = require('connect-flash'),
     config = require('./config'),
     consolidate = require('consolidate'),
@@ -70,13 +65,10 @@ module.exports = function(db){
     }));
     app.use(bodyParser.json());
     app.use(methodOverride());
-    // CookieParser should be above session
-    app.use(cookieParser());
-    // use passport session
+    // use passport
     app.use(passport.initialize());
-    //app.use(passport.session());
     // connect flash for flash messages
-    app.use(flash());
+    //app.use(flash());
     // Use helmet to secure Express headers
     app.use(helmet.xframe());
     app.use(helmet.xssFilter());
@@ -113,13 +105,11 @@ module.exports = function(db){
         // Load SSL key and certificate
         var privateKey = fs.readFileSync('./config/sslcerts/key.pem', 'utf8');
         var certificate = fs.readFileSync('./config/sslcerts/cert.pem', 'utf8');
-        // Create HTTPS Server
-        var httpsServer = https.createServer({
+        // Create & Return HTTPS server instance
+        return https.createServer({
             key: privateKey,
             cert: certificate
         }, app);
-        // Return HTTPS server instance
-        return httpsServer;
     }
     // Attach Socket.io
     var server = http.createServer(app);
